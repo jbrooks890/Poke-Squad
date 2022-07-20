@@ -1,4 +1,5 @@
 import { typeColors } from "../services/utility";
+import { ReactComponent as Arrow } from "../assets/icons/poke-arrow.svg";
 
 export default function Card({ data, arrowClick }) {
   const { name, id, pic, type } = data;
@@ -6,10 +7,10 @@ export default function Card({ data, arrowClick }) {
   return (
     <div className="card">
       <div className="cycle prev" onClick={() => arrowClick(-1)}>
-        &lang;
+        <Arrow />
       </div>
       <div className="cycle next" onClick={() => arrowClick(1)}>
-        &rang;
+        <Arrow />
       </div>
       <div className="card-main">
         <img className="poke-pic" src={pic} alt={`${name} sprite`} />

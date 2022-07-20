@@ -4,6 +4,7 @@ import { getPokemon, initData, count } from "../services/utility";
 import Card from "./Card";
 import Search from "./Search";
 import Team from "./Team";
+import { ReactComponent as Pokeball } from "../assets/icons/pokeball.svg";
 
 export default function Main() {
   const [team, setTeam] = useState([]); //array of Pokemon objects
@@ -53,6 +54,16 @@ export default function Main() {
         `%c${candidate.name} is already on your team!`,
         "color: orange"
       );
+      let target = team.indexOf(
+        team.filter((member) => member.id === candidate.id)[0]
+      );
+      console.log({ target });
+      //   let modified = [...team].splice(target, 1);
+      let modified = [...team];
+      let test = modified.splice(target, 1);
+      //   console.log("%cModified team:", "color: red", modified);
+
+      setTeam(() => modified);
     }
   };
 
@@ -72,8 +83,15 @@ export default function Main() {
       <Team data={team} onClick={selectPokemon} />
       <Search onSubmit={(e) => searchPokemon(e)} />
       {candidate.name && <Card data={candidate} arrowClick={scrubCandidate} />}
-      <button id="add-to-team" onClick={(e) => modifyTeam(e)}>
-        {candidate.id && !currentMember(candidate.id) ? "Add" : "Remove"}
+      <button
+        id="add-to-team"
+        onClick={(e) => modifyTeam(e)}
+        className={
+          candidate.id && !currentMember(candidate.id) ? null : "current"
+        }
+      >
+        {/* {candidate.id && !currentMember(candidate.id) ? "Add" : "Remove"} */}
+        <Pokeball className="submit-icon" />
       </button>
     </main>
   );

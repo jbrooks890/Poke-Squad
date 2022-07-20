@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg className="poke-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 96">
+  <g>
+    <polygon className="inner" points="0 31.614 0 64.386 16.809 48 0 31.614" />
+    <polygon className="outer" points="0 0 0 19.246 29.497 48 0 76.754 0 96 48 48 0 0" />
+  </g>
+</svg>

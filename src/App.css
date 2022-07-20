@@ -102,29 +102,42 @@ main {
 
 .cycle.prev {
   order: 1;
-  padding-right: 2rem;
+  /* padding-right: 2rem; */
+  transform: scaleX(-1);
 }
+
 .card-main {order: 2;}
+
 .cycle.next {
   order: 3;
-  padding-left: 2rem;
 }
 
 .cycle {
   cursor: pointer;
+  width: 36px;
   font-size: 5rem;
   color: var(--red);
+  padding-left: 2rem;
   transition: 0.1s ease-out;
 }
 
-.cycle.prev:hover {
-  transform: translateX(-10px);
-  /* animation: bob 0.5s infinite linear; */
+@keyframes bob {
+  0% {transform: translateX(0);}
+  50% {transform: translateX(10px);}
+  100% {transform: translateX(0);}
 }
 
-.cycle.next:hover {
-  transform: translateX(10px);
-  /* animation: bob 0.5s infinite linear; */
+.cycle .poke-arrow {
+  fill: var(--red);
+  overflow: visible;
+}
+
+.cycle .poke-arrow .outer{
+  transition: 0.1s ease-out;
+}
+
+.cycle:hover .poke-arrow .outer {
+  animation: bob 0.75s infinite;
 }
 
 .card-main {
@@ -177,7 +190,7 @@ main {
   display: block;
   padding: 0.25em 1em;
   color: white;
-  font-size: small;
+  font-size: 0.75rem;
   font-weight: 600;
   text-shadow: 1px 1px 0 hsla(0,0%,0%,0.15);
   text-transform: uppercase;
@@ -189,3 +202,59 @@ main {
 .card .poke-type li:not(:last-of-type){
   margin-right: 0.5rem;
 }
+
+/* ------------- SUBMIT ------------- */
+
+button#add-to-team{
+  appearance: none;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  width: 5vmin;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  box-sizing: border-box;
+}
+
+button#add-to-team .submit-icon {
+  width: 100%;
+  fill: var(--red);
+  transition: 0.1s ease-out;
+}
+
+button#add-to-team.current .submit-icon {
+  fill: var(--liteGray)
+}
+
+button#add-to-team.current:hover .submit-icon {
+  fill: var(--red)
+}
+
+@keyframes blink {
+  from {filter: brightness(2)}
+  to {filter: brightness(1)}
+}
+
+button#add-to-team.current:hover .submit-icon .center {
+  animation: blink 1s infinite;
+}
+
+/* button#add-to-team.current::before {
+  opacity: 0;
+  color: var(--red);
+  text-align: center;
+  transition: 0.1s ease-out;
+} */
+
+/* button#add-to-team.current:hover::before {
+  content: 'Release';
+  position: absolute;
+  width: 100%;
+  opacity: 1;
+  z-index: 1;
+  transform: translateY(-100%);
+} */
+
+
+/* ::::::::::::: FOOTER ::::::::::::: */

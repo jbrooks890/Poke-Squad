@@ -11,7 +11,17 @@ export default function Team({ data, onClick }) {
           key={i}
           id={`slot-${i + 1}`}
           data-occupant={data[i] && names[i]}
-          onClick={data[i] && (() => onClick(i))}
+          onClick={
+            data[i] &&
+            ((e) => {
+              //   console.log(e.currentTarget);
+              document
+                .querySelectorAll("#team-cache li")
+                .forEach((item) => item.classList.remove("selected"));
+              e.currentTarget.classList.toggle("selected");
+              onClick(i);
+            })
+          }
         >
           {data[i] && (
             <img
