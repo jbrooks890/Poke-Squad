@@ -1,11 +1,19 @@
 :root {
+  /* ------- COLORS ------- */
   --red: hsl(0, 100%, 45%);
-  --liteGray: hsl(0,0%,90%);
+  --liteGray: hsl(0,0%,95%);
+  /* ------- CORNERS ------- */
+  --outside: 20px;
+  --inside: 10px;
 }
 
 html, body, #root {
   min-height: 100vh;
   box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 .App {
@@ -20,16 +28,23 @@ html, body, #root {
 
 header, footer {
   background-color: var(--red);
+  color: white;
 }
 
 main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 3rem;
 }
+
+/* ::::::::::::: TEAM CACHE ::::::::::::: */
 
 #team-cache {
   display: flex;
   justify-content: center;
-  width: 50vw;
+  /* width: 50vw; */
   margin: 1em auto;
   padding-left: 0;
   padding: 0.25em;
@@ -40,8 +55,10 @@ main {
 }
 
 #team-cache li {
-  --size: 1.5rem;
+  --size: 3rem;
   cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
   width: var(--size);
   height: var(--size);
   background-color: var(--liteGray);
@@ -51,4 +68,124 @@ main {
 
 #team-cache li:not(:last-of-type){
   margin-right: 0.5em;
+}
+
+#team-cache li.selected{
+  outline: 2px solid var(--red);
+} 
+
+#team-cache .cache-sprite {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* border: 1px solid red; */
+  box-sizing: border-box;
+  transition: 0.1s ease-out;
+}
+
+#team-cache li:hover .cache-sprite {
+  transform: scale(1.25, 1.25);
+}
+
+/* ::::::::::::: CARD ::::::::::::: */
+
+.card {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+@keyframes bob {
+  from {transform: translateX(10px)}
+  to {transform: translateX(0)}
+}
+
+.cycle.prev {
+  order: 1;
+  padding-right: 2rem;
+}
+.card-main {order: 2;}
+.cycle.next {
+  order: 3;
+  padding-left: 2rem;
+}
+
+.cycle {
+  cursor: pointer;
+  font-size: 5rem;
+  color: var(--red);
+  transition: 0.1s ease-out;
+}
+
+.cycle.prev:hover {
+  transform: translateX(-10px);
+  /* animation: bob 0.5s infinite linear; */
+}
+
+.cycle.next:hover {
+  transform: translateX(10px);
+  /* animation: bob 0.5s infinite linear; */
+}
+
+.card-main {
+  --size: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: var(--size);
+  margin-block: 2rem;
+  padding-bottom: 1rem;
+  background-color: var(--red);
+  border-radius: var(--outside);
+  box-sizing: border-box;
+  box-shadow: 2px 2px 5px hsla(0,0%,0%,0.15);
+  overflow: hidden;
+}
+
+.card .poke-pic {
+  width: 100%;
+  padding: 2em;
+  /* border: 1px solid red; */
+  /* background-color: black; */
+  box-sizing: border-box;
+}
+
+.card .poke-name {
+  position: relative;
+  margin-block: 0 0.25em;
+  color: white;
+  line-height: 1em;
+}
+
+.card .poke-name::before {
+  content: '#' attr(data-order);
+  display: block;
+  text-align: left;
+  font-size: small;
+  line-height: 1em;
+}
+
+.card .poke-type {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0;
+}
+
+.card .poke-type li {
+  display: block;
+  padding: 0.25em 1em;
+  color: white;
+  font-size: small;
+  font-weight: 600;
+  text-shadow: 1px 1px 0 hsla(0,0%,0%,0.15);
+  text-transform: uppercase;
+  line-height: 1em;
+  box-shadow: 2px 2px 2px hsla(0,0%,0%,0.15);
+  border-radius: 100px;
+}
+
+.card .poke-type li:not(:last-of-type){
+  margin-right: 0.5rem;
 }

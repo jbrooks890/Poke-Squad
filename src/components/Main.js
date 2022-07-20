@@ -15,21 +15,37 @@ export default function Main() {
     setCandidate(pokemon);
   }, []);
 
-  const searchPokemon = async (e) => {
-    e.preventDefault();
-    const query = document
-      .querySelector("#search-input")
-      .value.trim()
-      .toLowerCase();
+  useEffect(
+    () =>
+      console.log(
+        "Team:",
+        team.map((pokemon) => pokemon.name)
+      ),
+    [team]
+  );
+
+  const searchPokemon = async (e, _query) => {
+    e && e.preventDefault();
+    let input = document.querySelector("#search-input");
+    let query = _query ? _query : input.value.trim().toLowerCase();
     const response = await getPokemon(query);
+    input.value = "";
     setCandidate(response);
   };
   //   console.log({ count });
 
-  const modifyTeam = (e) => {
-    // e.preventDefault();
+  const scrubCandidate = (dir) => {
+    if (candidate.id + dir <= 0) {
+      searchPokemon(undefined, count);
+    } else if (candidate.id + dir > count) {
+      searchPokemon(undefined, 1);
+    } else {
+      searchPokemon(undefined, candidate.id + dir);
+    }
+  };
 
-    if (team.length <= 6 && !currentMember(candidate.id)) {
+  const modifyTeam = (e) => {
+    if (team.length < 6 && !currentMember(candidate.id)) {
       console.log(`%cAdded ${candidate.name} to the team!`, "color: lime");
       setTeam((currTeam) => [...currTeam, candidate]);
     } else {
@@ -40,20 +56,22 @@ export default function Main() {
     }
   };
 
+  const promptUser = async (prompt, options = ["yes", "no"]) => {};
+
   const currentMember = (id) => {
-    console.log({ id });
+    // console.log({ id });
     return team.map((member) => member.id).includes(id);
   };
 
-  console.log("candidate", candidate);
-  candidate.species && console.log(candidate.name);
-  console.log("Team", team);
+  const selectPokemon = (index) => {
+    setCandidate(team[index]);
+  };
 
   return (
     <main>
-      <Team data={team} />
+      <Team data={team} onClick={selectPokemon} />
       <Search onSubmit={(e) => searchPokemon(e)} />
-      {candidate.name && <Card data={candidate} />}
+      {candidate.name && <Card data={candidate} arrowClick={scrubCandidate} />}
       <button id="add-to-team" onClick={(e) => modifyTeam(e)}>
         {candidate.id && !currentMember(candidate.id) ? "Add" : "Remove"}
       </button>

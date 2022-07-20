@@ -1,16 +1,30 @@
-export default function Team({ data }) {
+export default function Team({ data, onClick }) {
   const names = data.map((pokemon) => pokemon.name);
+  const sprites = data.map((pokemon) => pokemon.sprite);
 
-  console.log("Names:", names);
+  //   names.length > 0 && console.log("Names:", names);
+  const popTeamCache = () => {
+    let cache = [];
+    for (let i = 0; i < 6; i++) {
+      cache.push(
+        <li
+          key={i}
+          id={`slot-${i + 1}`}
+          data-occupant={data[i] && names[i]}
+          onClick={data[i] && (() => onClick(i))}
+        >
+          {data[i] && (
+            <img
+              className="cache-sprite"
+              src={sprites[i]}
+              alt={`${names[i]} sprite`}
+            />
+          )}
+        </li>
+      );
+    }
+    return cache;
+  };
 
-  return (
-    <ul id="team-cache">
-      <li id="slot-1" data-occupant={data[0] && names[0]}></li>
-      <li id="slot-2" data-occupant={data[1] && names[1]}></li>
-      <li id="slot-3" data-occupant={data[2] && names[2]}></li>
-      <li id="slot-4" data-occupant={data[3] && names[3]}></li>
-      <li id="slot-5" data-occupant={data[4] && names[4]}></li>
-      <li id="slot-6" data-occupant={data[5] && names[5]}></li>
-    </ul>
-  );
+  return <ul id="team-cache">{popTeamCache()}</ul>;
 }
