@@ -41,7 +41,8 @@ const getPokemon = async (_query) => {
 };
 
 const typeColors = {
-  normal: "#A8A77A",
+  normal: "#a4acaf",
+  //   normal: "#A8A77A",
   fire: "#EE8130",
   water: "#6390F0",
   electric: "#F7D02C",

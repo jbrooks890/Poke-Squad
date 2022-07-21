@@ -1,4 +1,6 @@
 :root {
+  /* ------- SIZES ------- */
+  --target: 36px;
   /* ------- COLORS ------- */
   --red: hsl(0, 100%, 45%);
   --liteGray: hsl(0,0%,95%);
@@ -21,7 +23,7 @@ html, body, #root {
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  /* min-height: inherit; */
+  min-height: inherit;
   text-align: center;
   box-sizing: border-box;
 }
@@ -35,6 +37,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  justify-self: flex-start;
   align-items: center;
   margin-bottom: 3rem;
 }
@@ -75,12 +78,14 @@ main {
 } 
 
 #team-cache .cache-sprite {
+  position: relative;
   width: 100%;
   height: 100%;
   object-fit: cover;
   /* border: 1px solid red; */
   box-sizing: border-box;
   transition: 0.1s ease-out;
+  z-index: 1;
 }
 
 #team-cache li:hover .cache-sprite {
@@ -114,7 +119,7 @@ main {
 
 .cycle {
   cursor: pointer;
-  width: 36px;
+  width: var(--target);
   font-size: 5rem;
   color: var(--red);
   padding-left: 2rem;
@@ -211,6 +216,7 @@ button#add-to-team{
   position: relative;
   display: flex;
   width: 5vmin;
+  min-width: var(--target);
   padding: 0;
   border: 0;
   background-color: transparent;

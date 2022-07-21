@@ -4,7 +4,7 @@ import { getPokemon, initData, count } from "../services/utility";
 import Card from "./Card";
 import Search from "./Search";
 import Team from "./Team";
-import { ReactComponent as Pokeball } from "../assets/icons/pokeball.svg";
+import { ReactComponent as Pokeball } from "../assets/icons/pokeball-2.svg";
 
 export default function Main() {
   const [team, setTeam] = useState([]); //array of Pokemon objects
@@ -75,6 +75,7 @@ export default function Main() {
   };
 
   const selectPokemon = (index) => {
+    console.log(team[index]);
     setCandidate(team[index]);
   };
 
