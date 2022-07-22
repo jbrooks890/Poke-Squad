@@ -134,6 +134,7 @@ main {
 
 .cycle .poke-arrow {
   fill: var(--red);
+  width: 100%;
   overflow: visible;
 }
 

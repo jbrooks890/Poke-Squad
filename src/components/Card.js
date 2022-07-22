@@ -1,5 +1,6 @@
 import { typeColors } from "../services/utility";
 import { ReactComponent as Arrow } from "../assets/icons/poke-arrow.svg";
+// import { Arrow } from "./Icons";
 
 export default function Card({ data, arrowClick }) {
   const { name, id, pic, type } = data;
