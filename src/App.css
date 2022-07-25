@@ -259,6 +259,7 @@ nav a:not(:last-of-type){
   caret-color: var(--liteGray);
   font-family: var(--mainFont);
   font-weight: 600;
+  font-size: 1rem;
   background-color: transparent;
   text-align: center;
   text-transform: uppercase;
