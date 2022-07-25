@@ -152,6 +152,7 @@ nav a:not(:last-of-type){
   /* align-self: flex-start; */
   /* width: 50vw; */
   /* background-color: hsla(0,0%,100%,0.95); */
+  background-color: white;
   margin: 1em auto;
   padding-left: 0;
   padding: 0.25em;
@@ -394,6 +395,7 @@ nav a:not(:last-of-type){
 .card .poke-pic {
   width: 100%;
   padding: 2em;
+  object-fit: contain;
   /* border: 1px solid red; */
   /* background-color: black; */
   box-sizing: border-box;
