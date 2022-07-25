@@ -36,4 +36,4 @@ Displaying a multitude of Pokemon data
 
 # Hierarchy
 
-<img src='./assets/images/component-hierarchy-01.jpg'>
+![Component Hierarchy](src/assets/images/component-hierarchy-01.jpg)
