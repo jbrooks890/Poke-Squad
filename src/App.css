@@ -4,7 +4,8 @@
   --target: 36px;
   /* ------- COLORS ------- */
   --red: hsl(0, 100%, 45%);
-  --liteGray: hsl(0,0%,95%);
+  /* --liteGray: hsl(0,0%,95%); */
+  --liteGray: hsla(0,0%,0%,0.05);
   /* ------- CORNERS ------- */
   --outside: 20px;
   --inside: 10px;
@@ -14,6 +15,25 @@ html, body, #root {
   min-height: 100vh;
   box-sizing: border-box;
   font-family: var(--mainFont);
+  font-size: 18px;
+}
+
+body {
+  position: relative;
+}
+
+body::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url(./assets/images/plgp-pokemon-riding.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.05;
+  z-index: -1;
 }
 
 ::-webkit-scrollbar {
@@ -46,7 +66,7 @@ main {
   flex-grow: 1;
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 3rem;
+  padding-bottom: 3rem;
   /* background-color: blue; */
 }
 
@@ -104,6 +124,7 @@ nav a:not(:last-of-type){
   justify-content: center;
   /* align-self: flex-start; */
   /* width: 50vw; */
+  /* background-color: hsla(0,0%,100%,0.95); */
   margin: 1em auto;
   padding-left: 0;
   padding: 0.25em;
@@ -226,6 +247,7 @@ nav a:not(:last-of-type){
 #pokeSearch {
   display: flex;
   overflow: hidden;
+  background-color: hsla(0,0%,100%,0.95);
   padding: 10px;
   border: 3px solid var(--red);
   border-radius: 100px;
@@ -237,6 +259,7 @@ nav a:not(:last-of-type){
   caret-color: var(--liteGray);
   font-family: var(--mainFont);
   font-weight: 600;
+  background-color: transparent;
   text-align: center;
   text-transform: uppercase;
   border: none;
