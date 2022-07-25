@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import About from "../pages/About";
+import NotFound from "../pages/NotFound";
+import Scout from "../pages/Scout";
 import { getPokemon, initData, count } from "../services/utility";
-import Card from "./Card";
-import Search from "./Search";
+import AddTeamForm from "./AddTeamForm";
+import Modal from "./Modal";
 import Team from "./Team";
-import { ReactComponent as Pokeball } from "../assets/icons/pokeball-2.svg";
 
 export default function Main() {
   const [team, setTeam] = useState([]); //array of Pokemon objects
+  const [allTeams, setAllTeams] = useState([]);
   const [candidate, setCandidate] = useState({}); //result of pokemon api call
 
   useEffect(async () => {
@@ -79,21 +82,40 @@ export default function Main() {
     setCandidate(team[index]);
   };
 
+  const addNewTeam = () => {
+    if (team.length > 0) {
+      setAllTeams((prevTeams) => [...prevTeams, team]);
+      setTeam(() => []);
+    }
+  };
+
   return (
     <main>
-      <Team data={team} onClick={selectPokemon} />
-      <Search onSubmit={(e) => searchPokemon(e)} />
-      {candidate.name && <Card data={candidate} arrowClick={scrubCandidate} />}
-      <button
-        id="add-to-team"
-        onClick={(e) => modifyTeam(e)}
-        className={
-          candidate.id && !currentMember(candidate.id) ? null : "current"
-        }
-      >
-        {/* {candidate.id && !currentMember(candidate.id) ? "Add" : "Remove"} */}
-        <Pokeball className="submit-icon" />
-      </button>
+      <Modal component={<AddTeamForm />} />
+      <Team
+        data={team}
+        onClick={selectPokemon}
+        className={team.length === 6 ? "full" : null}
+        saveTeam={addNewTeam}
+      />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Scout
+              candidate={candidate}
+              scrubCandidate={scrubCandidate}
+              searchPokemon={searchPokemon}
+              modifyTeam={modifyTeam}
+              btnClass={
+                candidate.id && !currentMember(candidate.id) ? null : "current"
+              }
+            />
+          }
+        />
+        <Route path="/about" element={<About />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </main>
   );
 }

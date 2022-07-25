@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <div>
+    <section id="aboutPage">
       <h1>About</h1>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -11,6 +11,6 @@ export default function About() {
         occaecat cupidatat non proident, sunt in culpa qui officia deserunt
         mollit anim id est laborum.
       </p>
-    </div>
+    </section>
   );
 }

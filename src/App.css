@@ -1,4 +1,5 @@
 :root {
+  --mainFont: Rajdhani, Calibri, Tahoma;
   /* ------- SIZES ------- */
   --target: 36px;
   /* ------- COLORS ------- */
@@ -12,16 +13,22 @@
 html, body, #root {
   min-height: 100vh;
   box-sizing: border-box;
+  font-family: var(--mainFont);
 }
 
 ::-webkit-scrollbar {
   display: none;
 }
 
+a, a:visited {
+  text-decoration: none;
+  /* color: white; */
+}
+
 .App {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   height: 100%;
   min-height: inherit;
   text-align: center;
@@ -36,17 +43,66 @@ header, footer {
 main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  justify-self: flex-start;
+  flex-grow: 1;
+  justify-content: flex-start;
   align-items: center;
   margin-bottom: 3rem;
+  /* background-color: blue; */
 }
+
+/* ------------- MODAL ------------- */
+
+#modal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: hsla(0,0%,100%,0.5);
+  transition: 0.2s ease-out;
+  opacity: 0;
+  z-index: -1;
+}
+
+#modal.active {
+  opacity: 1;
+  z-index: 1000;
+}
+
+main section {
+  max-width: 50vw;
+}
+
+/* ::::::::::::: NAV ::::::::::::: */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+#site-title { margin-block: 0.5em;}
+
+nav a {
+  color: white;
+  font-weight: 500;
+}
+
+nav a:not(:last-of-type){
+  margin-right: 1em;
+}
+
 
 /* ::::::::::::: TEAM CACHE ::::::::::::: */
 
 #team-cache {
+  position: relative;
   display: flex;
   justify-content: center;
+  /* align-self: flex-start; */
   /* width: 50vw; */
   margin: 1em auto;
   padding-left: 0;
@@ -90,6 +146,129 @@ main {
 
 #team-cache li:hover .cache-sprite {
   transform: scale(1.25, 1.25);
+}
+
+#add-team-btn {
+  --size: 1em;
+  cursor: pointer;
+  appearance: none;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: -0.25em;
+  bottom: 0;
+  /* background-color: var(--liteGray); */
+  color: white;
+  /* font-family: 'Courier New', Courier, monospace; */
+  /* font-weight: 600; */
+  font-size: 1.5rem;
+  text-align: center;
+  line-height: 1em;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  transform: translateX(100%);
+  margin-left: 0.5em;
+  padding: 0;
+  /* border: 1px solid var(--liteGray) */
+  border: none;
+}
+
+#add-team-btn:hover,
+#team-cache.full #add-team-btn {background-color: var(--red);}
+
+#add-team-btn::after {
+  content: 'Add team';
+  position: absolute;
+  right: -0.5em;
+  color: var(--red);
+  white-space: nowrap;
+  transform: translateX(75%);
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  transition: 0.1s ease-out;
+  opacity: 0;
+}
+
+#add-team-btn:hover::after {
+  transform: translateX(100%);
+  opacity: 1;
+}
+
+@keyframes swell {
+  
+  0% {
+    transform: translateX(100%) scale(1);
+    filter: brightness(1.5);
+  }
+  50% {
+    transform: translateX(100%) scale(1.1);
+  }
+  100% {
+    transform: translateX(100%) scale(1);
+    filter: brightness(1.25);}
+}
+
+#team-cache.full #add-team-btn {
+  animation: swell 0.5s 2;
+}
+
+/* ::::::::::::: SCOUT PAGE ::::::::::::: */
+#scoutPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ::::::::::::: SEARCH BAR ::::::::::::: */
+
+#pokeSearch {
+  display: flex;
+  overflow: hidden;
+  padding: 10px;
+  border: 3px solid var(--red);
+  border-radius: 100px;
+}
+
+#pokeSearch #search-input {
+  appearance: none;
+  color: var(--red);
+  caret-color: var(--liteGray);
+  font-family: var(--mainFont);
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  border: none;
+  outline: none;
+}
+
+#pokeSearch #search-input::placeholder{
+  color: hsla(0,0%,0%,0.15);
+  text-transform: none;
+  font-style: italic;
+}
+
+#pokeSearch button {
+  --size: 2em;
+  cursor: pointer;
+  margin-left: 0.5em;
+  padding: 0;
+  background-color: transparent;
+  width: var(--size);
+  height: var(--size);
+  border: none;
+}
+
+#pokeSearch button svg {
+  fill: var(--liteGray);
+  width: 100%;
+  height: 100%;
+  transition: 0.1s ease-out;
+}
+
+#pokeSearch button:hover svg {
+  fill: red;
 }
 
 /* ::::::::::::: CARD ::::::::::::: */
@@ -218,6 +397,7 @@ button#add-to-team{
   display: flex;
   width: 5vmin;
   min-width: var(--target);
+  margin: 0 auto;
   padding: 0;
   border: 0;
   background-color: transparent;
@@ -264,4 +444,71 @@ button#add-to-team.current:hover .submit-icon .center {
 } */
 
 
+/* ::::::::::::: ADD TEAM FORM ::::::::::::: */
+
+#addTeamForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 240px;
+  height: 50vh;
+  padding: 1em;
+  /* border: 1px solid red; */
+  background-color: hsla(0,0%,100%,0.99);
+  border-radius: var(--inside);
+  box-shadow: 2px 2px 5px hsla(0, 0%, 0%, 0.1);
+}
+
+#addTeamForm h2 {
+  color: var(--red);
+  font-weight: 600;
+}
+
+#addTeamForm label h4 {
+  text-align: left;
+  margin: 0;
+  color: silver;
+  font-weight: normal;
+}
+
+#addTeamForm input[type='text']{
+  appearance: none;
+  outline: none;
+  padding: 0.5em;
+  color: var(--red);
+  /* width: 100%; */
+  border: 2px solid var(--red);
+  border-radius: 5px;
+}
+
+#addTeamForm button {
+  appearance: none;
+  justify-self: flex-end;
+  cursor: pointer;
+  margin-top: 1em;
+  padding: 1em;
+  text-transform: uppercase;
+  background-color: var(--red);
+  color: white;
+  line-height: 1em;
+  border: none;
+  border-radius: 5px;
+}
+
+#addTeamForm button
+
+/* ::::::::::::: ABOUT ::::::::::::: */
+
+#aboutPage h1 {color: var(--red)}
+
+#aboutPage p{
+  color: silver;
+  text-align: justify;
+  text-align-last: center;
+}
+
 /* ::::::::::::: FOOTER ::::::::::::: */
+
+footer {
+  justify-self: flex-end;
+}
