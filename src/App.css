@@ -1,16 +1,3 @@
-:root {
-  --mainFont: Rajdhani, Calibri, Tahoma;
-  /* ------- SIZES ------- */
-  --target: 36px;
-  /* ------- COLORS ------- */
-  --red: hsl(0, 100%, 45%);
-  /* --liteGray: hsl(0,0%,95%); */
-  --liteGray: hsla(0,0%,0%,0.05);
-  /* ------- CORNERS ------- */
-  --outside: 20px;
-  --inside: 10px;
-}
-
 @font-face {
   font-family: 'Rajdhani';
   src: url(./assets/fonts/Rajdhani-Light.ttf);
@@ -36,6 +23,20 @@
   src: url(./assets/fonts/Rajdhani-Bold.ttf);
   font-weight: 700;
 }
+
+:root {
+  --mainFont: 'Rajdhani', Calibri, Tahoma;
+  /* ------- SIZES ------- */
+  --target: 36px;
+  /* ------- COLORS ------- */
+  --red: hsl(0, 100%, 45%);
+  /* --liteGray: hsl(0,0%,95%); */
+  --liteGray: hsla(0,0%,0%,0.05);
+  /* ------- CORNERS ------- */
+  --outside: 20px;
+  --inside: 10px;
+}
+
 
 html, body, #root {
   min-height: 100vh;
