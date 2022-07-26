@@ -69,7 +69,7 @@ body::before{
 
 a, a:visited {
   text-decoration: none;
-  /* color: white; */
+  color: inherit;
 }
 
 .App {
@@ -123,13 +123,28 @@ main section {
   max-width: 50vw;
 }
 
-/* ::::::::::::: NAV ::::::::::::: */
+/* ::::::::::::: HEADER ::::::::::::: */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
 }
+
+header #logo {
+  display: flex;
+  align-items: center;
+}
+
+#logo-mark {
+  --size: 2rem;
+  width: var(--size);
+  height: var(--size);
+  fill: white;
+  margin-right: 0.5em;
+}
+
+/* ::::::::::::: NAV ::::::::::::: */
 
 #site-title { margin-block: 0.5em;}
 
@@ -564,4 +579,18 @@ button#add-to-team.current:hover .submit-icon .center {
 
 footer {
   justify-self: flex-end;
+  padding:1em;
+}
+
+#footer-connect h3 {
+  margin: 0;
+  margin-bottom: 0.25em;
+  font-weight: 400;
+}
+
+.github-icon {
+  --size: 2em;
+  fill: white;
+  width: var(--size);
+  height: var(--size);
 }

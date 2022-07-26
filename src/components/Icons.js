@@ -1,5 +1,6 @@
 import { ReactComponent as Pokeball_ } from "../assets/icons/_pokeball-2.svg";
 import { ReactComponent as Arrow_ } from "../assets/icons/_poke-arrow.svg";
+import { ReactComponent as Github } from "../assets/icons/github-icon.svg";
 
 export default function Icons() {
   return (
@@ -11,6 +12,7 @@ export default function Icons() {
     >
       <Pokeball_ />
       <Arrow_ />
+      <Github />
     </svg>
   );
 }
