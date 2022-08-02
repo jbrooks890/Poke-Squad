@@ -18,7 +18,6 @@ export default function Scout({
         onClick={(e) => modifyTeam(e)}
         className={btnClass}
       >
-        {/* {candidate.id && !currentMember(candidate.id) ? "Add" : "Remove"} */}
         <Pokeball className="submit-icon" />
       </button>
     </section>
