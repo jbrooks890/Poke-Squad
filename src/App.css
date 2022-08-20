@@ -25,11 +25,16 @@
 }
 
 :root {
+  /* ------- BASE SIZE REFERENCE ------- */
+  --gridSize: 48px;
+  /* ------- FONT ------- */
   --mainFont: 'Rajdhani', Calibri, Tahoma;
   /* ------- SIZES ------- */
   --target: 36px;
   /* ------- COLORS ------- */
   --red: hsl(0, 100%, 45%);
+  --night: 250;
+  --dark: hsl(var(--night), 10%, 10%);
   /* --liteGray: hsl(0,0%,95%); */
   --liteGray: hsla(0,0%,0%,0.05);
   /* ------- CORNERS ------- */
@@ -91,9 +96,11 @@ main {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  align-self: center;
   justify-content: flex-start;
   align-items: center;
   padding-bottom: 3rem;
+  max-width: 1012px;
   /* background-color: blue; */
 }
 
@@ -431,7 +438,7 @@ nav a:not(:last-of-type){
   line-height: 1em;
 }
 
-.card .poke-type {
+.poke-type {
   display: flex;
   justify-content: center;
   list-style-type: none;
@@ -439,7 +446,7 @@ nav a:not(:last-of-type){
   padding-left: 0;
 }
 
-.card .poke-type li {
+.poke-type li {
   display: block;
   padding: 0.25em 1em;
   color: white;
@@ -452,7 +459,7 @@ nav a:not(:last-of-type){
   border-radius: 100px;
 }
 
-.card .poke-type li:not(:last-of-type){
+.poke-type li:not(:last-of-type){
   margin-right: 0.5rem;
 }
 
@@ -593,4 +600,170 @@ footer {
   fill: white;
   width: var(--size);
   height: var(--size);
+}
+
+/* ::::::::::::: DATA ::::::::::::: */
+
+#poke-data {
+  display: flex;
+  padding: 1rem;
+  width: 90vw;
+  max-width: 1012px;
+  min-height: 640px;
+  box-sizing: border-box;
+  border: 1px solid blue;
+}
+
+#poke-data-main {
+  width: 40%;
+}
+
+#poke-data-section {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  box-sizing: border-box;
+}
+
+#poke-data-frame {
+  flex-grow: 1;
+  padding: 2rem;
+  box-sizing: border-box;
+  /* border: 1px solid blue; */
+}
+
+#poke-data-frame section {
+  display: none;
+  opacity: 0;
+  transition: 0.1s ease-out;
+  box-sizing: border-box;
+  /* border: 1px solid rgb(0, 132, 255); */
+}
+
+#poke-data-frame section.active {
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
+}
+
+#poke-data-frame section h3 {
+  margin-top: 0;
+}
+
+#poke-pic {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#poke-title {
+  text-align: left;
+}
+
+#poke-name, #poke-id {
+  margin: 0;
+}
+
+#poke-dimensions {
+  display: flex;
+}
+
+#poke-dimensions > *:not(:last-of-type){
+  margin-right: 0.5em;
+}
+
+#poke-desc {
+  text-align: left;
+}
+
+#poke-desc-title {
+  font-weight: 500;
+  text-transform: uppercase;
+  margin: 0;
+  /* margin-bottom: 1em; */
+}
+
+.section-label{
+  position:relative;
+  min-width: calc(var(--gridSize) * 2);
+  /* margin-top: 0; */
+}
+
+.section-label::before{
+  content: attr(data-label);
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-align: left;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+#poke-ability {
+  text-align: left;
+}
+
+#poke-ability .ability {
+  cursor: pointer;
+  background-color: hsla(0,0%,0%,0.05);
+  border-radius: 5px;
+  box-sizing: border-box;
+  transition: 0.1s ease-out;
+}
+
+#poke-ability .ability:not(:last-of-type){
+  margin-bottom: 1em;
+}
+
+
+#poke-ability summary {
+  font-weight: 600;
+  padding: 1rem;
+  /* font-size: larger; */
+}
+
+#poke-ability p {
+  padding: 1rem;
+  padding-top: 0;
+}
+
+#poke-moveList ul {
+  padding-left: 0;
+}
+
+
+/* ------- DATA NAV ------- */
+
+#data-nav {
+  /* padding: 1em; */
+  background-color: var(--red);
+  /* color: white; */
+  box-sizing: border-box;
+  /* border: 2px solid var(--red); */
+  border-radius: var(--inside);
+  margin-bottom: 1rem;
+}
+
+#data-nav ul {
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0;
+  line-height: 1em;
+  color: white;
+  font-weight: 600;
+}
+
+#data-nav ul li {
+  cursor: pointer;
+  padding: 1em;
+}
+
+#data-nav ul li:hover {
+  outline: 2px solid white;
+}
+
+#data-nav ul li:not(:last-of-type){
+  margin-right: 0.5em;
 }

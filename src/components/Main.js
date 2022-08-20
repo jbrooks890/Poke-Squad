@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import About from "../pages/About";
+import Data from "../pages/Data";
 import NotFound from "../pages/NotFound";
 import Scout from "../pages/Scout";
+import UserProfile from "../pages/UserProfile";
 import { getPokemon, initData, count } from "../services/utility";
 import AddTeamForm from "./AddTeamForm";
 import Modal from "./Modal";
@@ -12,6 +14,7 @@ export default function Main() {
   const [team, setTeam] = useState([]); //array of Pokemon objects
   const [allTeams, setAllTeams] = useState([]);
   const [candidate, setCandidate] = useState({}); //result of pokemon api call
+  const [dataView, setDataView] = useState(false);
 
   useEffect(async () => {
     const pokemon = await initData();
@@ -114,6 +117,8 @@ export default function Main() {
           }
         />
         <Route path="/about" element={<About />} />
+        <Route path="/profile" element={<UserProfile roster={allTeams} />} />
+        <Route path="/data" element={<Data />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </main>

@@ -1,5 +1,6 @@
-import { typeColors } from "../services/utility";
+// import { typeColors } from "../services/utility";
 import { ReactComponent as Arrow } from "../assets/icons/poke-arrow.svg";
+import Type from "./PokeData/Type";
 // import { Arrow } from "./Icons";
 
 export default function Card({ data, arrowClick }) {
@@ -18,16 +19,7 @@ export default function Card({ data, arrowClick }) {
         <h1 className="poke-name" data-order={id}>
           {name}
         </h1>
-        <ul className="poke-type">
-          {type.map((each, i) => {
-            const _type = each.type.name;
-            return (
-              <li key={i} style={{ backgroundColor: typeColors[_type] }}>
-                {_type[0].toUpperCase() + _type.slice(1)}
-              </li>
-            );
-          })}
-        </ul>
+        <Type type={type} />
       </div>
     </div>
   );

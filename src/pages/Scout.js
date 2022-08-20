@@ -1,6 +1,7 @@
 import Card from "../components/Card";
 import Search from "../components/Search";
 import { ReactComponent as Pokeball } from "../assets/icons/pokeball-2.svg";
+import Data from "./Data";
 
 export default function Scout({
   candidate,
@@ -10,7 +11,7 @@ export default function Scout({
   btnClass,
 }) {
   return (
-    <section id="scoutPage">
+    <div id="scoutPage">
       <Search onSubmit={(e) => searchPokemon(e)} />
       {candidate.name && <Card data={candidate} arrowClick={scrubCandidate} />}
       <button
@@ -20,6 +21,7 @@ export default function Scout({
       >
         <Pokeball className="submit-icon" />
       </button>
-    </section>
+      {candidate.name && <Data candidate={candidate} />}
+    </div>
   );
 }
